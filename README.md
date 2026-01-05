@@ -1,4 +1,3 @@
-# HireMail AI  
 <img src="assets/logo.png" alt="HireMail AI Logo" width="150"/>
 
 **AI-powered Job Application Automation Platform**
