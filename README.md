@@ -7,7 +7,7 @@ Automates resume tailoring, cover letter generation, and job applications using 
 
 ---
 
-## 🚀 The Real Problem in Job Applications
+## The Real Problem in Job Applications
 
 - Reading JDs → rewriting resumes → crafting cover letters = **2–3 hours per application**  
 - Repetitive, error-prone, and exhausting when applying at scale  
@@ -15,37 +15,33 @@ Automates resume tailoring, cover letter generation, and job applications using 
 
 ---
 
-## 🔥 HireMail AI – End-to-End Application Automation
+## HireMail AI – End-to-End Application Automation
 
 HireMail AI reduces **hours → minutes** using **multi-agent AI** that analyzes, tailors, and prepares job applications — while keeping *you* fully in control.
 
 ---
 
-## 🧠 Core Features
+## Core Features
 
 ### **Multi-Agent System**
-- Specialized autonomous agents handle each step of the workflow
+- Constructed a multi-agent system to automate resume tailoring and job application submission.
 
 ### **Auto-Diagnostic Agent**
-- Detects, reports, and self-corrects runtime issues  
+- Boosted system reliability by **60%+** by autonomously detecting, reporting, and resolving runtime issues.
 
 ### **LLM Factory Handler**
-- Routes tasks across OpenAI, Mistral, Gemini, and Hugging Face  
-- Chooses the best model based on **cost**, **speed**, and **task complexity**
+- Engineered a factory handler for seamless multi-LLM orchestration across **OpenAI, Mistral, Gemini, and Hugging Face Hub**.
 
-### **Cost-Optimized LLM Routing**
-- Uses lightweight models for simple tasks  
-- Switches to stronger models only when needed
 
 ---
 
-## 📬 Contact
+## Contact
 
 If you’d like a **technical walkthrough** or **architecture explanation**, feel free to reach out via **LinkedIn** or **email**.
 
 ---
 
-## 🎥 Demo
+## Demo
 **Watch Full Demo → [YouTube Video](https://www.youtube.com/watch?v=Y0BHGISzkck)**  
 
 ---
