@@ -1,14 +1,14 @@
 <img src="assets/logo.png" alt="HireMail AI Logo" width="150"/>
 
 **AI-powered Job Application Automation Platform**  
-Automates resume tailoring, cover letter generation, and job application submission using a coordinated multi-agent AI system — while keeping the user fully in control.
+Automates resume tailoring, cover letter generation, and job application submission using a coordinated multi-agent AI system, while keeping the user fully in control.
 
 ---
 
 # HireMailAI.in
 
 > **Status: V1 Core Build Complete — Compliance in Progress**  
-> HireMailAI.in has completed its V1 core development. The platform is currently undergoing required security reviews and statutory registrations prior to public release.
+> The platform is currently undergoing required security reviews and statutory registrations prior to public release.
 
 ---
 
