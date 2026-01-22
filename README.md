@@ -20,7 +20,8 @@
 
 
 <p align="center">
-  <img src="assets/demo.mp4" alt="HireMail AI Demo" width="800"/>
+  <video src="assets/demo.mp4" width="800" autoplay loop muted></video>
+
 </p>
 
 ---
