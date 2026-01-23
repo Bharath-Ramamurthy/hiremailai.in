@@ -239,13 +239,8 @@ Each agent is optimized for its specific task:
 - Retries with adjusted prompts
 - Escalates to user only on persistent failures
 
-#### Impact
 
-| Metric | Before Auto-Diagnostic | After Auto-Diagnostic | Improvement |
-|--------|------------------------|----------------------|-------------|
-| System Reliability | ~65% | 94%+ | **+60%** |
-| Manual Interventions | ~40/week | ~6/week | **-85%** |
-| Recovery Time | 15-30 min | <2 min | **>90% faster** |
+
 
 **Bottom Line:** The system heals itself, minimizing downtime and eliminating most manual troubleshooting.
 
