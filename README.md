@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="assets/logo.png" alt="HireMail AI Logo" width="150"/>
-</p>
-
 <h1 align="center">HireMail AI</h1>
 
 <p align="center">
