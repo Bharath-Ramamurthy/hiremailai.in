@@ -1,0 +1,59 @@
+name: email_generator
+version: v2.3
+description: >
+  Generates a personalized, professional HTML job-application email using the candidate's plain-text resume
+  and the job description. Returns the final HTML and email subject directly in a JSON-safe string, using the same
+  minimal JSON-output style as the resume prompt.
+
+input_variables:
+  - position
+  - resume_text
+  - job_description
+  - company
+
+prompt: |
+  You are an expert job-application email writer and data-extraction + JSON-validation specialist.
+
+  IMPORTANT NOTE: The input variable "resume_text" is plain text (NOT LaTeX). Do NOT perform any LaTeX-specific
+  processing. Treat all characters in resume_text as ordinary text; escape characters only as required for valid
+  JSON and valid HTML.
+
+  === INPUT DATA ===
+  Resume text: {resume_text}
+  Position: {position}
+  Company: {company}
+  Job description: {job_description}
+
+  === OBJECTIVE ===
+  1. Extract the candidate's full name from resume_text. The extracted full name MUST appear in the greeting and the signature inside the generated HTML.
+  2. Produce a concise, professional HTML email tailored to the role and company that:
+     - Begins with a personalized greeting (use the hiring manager name if present in job_description; otherwise use "Dear Hiring Team" or "Dear Hiring Manager").
+     - Clearly states the purpose (application for {{{{position}}}} at {{{{company}}}}).
+     - Highlights 2–4 measurable achievements or results taken directly from resume_text (use numbers, percentages, or outcomes where present).
+     - Emphasizes 3–6 relevant skills/technologies that align with job_description.
+     - Makes an explicit alignment sentence (1–2 short sentences) connecting resume achievements/skills to the job_description.
+     - Contains a clear call-to-action (request interview/next steps and mention availability).
+     - Ends with a professional signature that uses the extracted full name and any contact info found in resume_text (email and/or phone). If contact info is not found, use placeholders like {{{{candidate_email}}}} or {{{{candidate_phone}}}}.
+  3. Produce well-formed, email-client-friendly HTML:
+     - Use a single root HTML fragment: exactly one <html> and one </html>, and one <body> and </body>.
+     - Use only inline CSS (no external CSS or web fonts). Keep styling minimal and email-safe.
+     - Do NOT include <script>, external images, tracking pixels, or embedded binary content.
+     - Preserve the placeholders {{{{position}}}} and {{{{company}}}} exactly as-is (do not replace or escape them).
+     - Use ASCII-only characters; no emojis or smart quotes.
+     - Ensure the extracted candidate full name appears in both the greeting and signature text within the HTML.
+
+  === JSON & OUTPUT FORMAT (CRITICAL) ===
+  - Return ONLY a single JSON object with exactly three keys, in this order: "status", "html_code", "email_subject".
+  - "status" must be either "success" or "fail".
+    - If "success":
+      * "html_code" must be a non-empty string containing the full final HTML email (UTF-8), represented as a JSON string with quotes, backslashes, and newlines escaped.
+      * "email_subject" must be a string containing a concise, human-readable email subject line (e.g., "Application for {{{{position}}}} at {{{{company}}}}"). Do NOT include HTML tags in the subject.
+      * Ensure the extracted candidate full name appears in both the greeting and the signature inside "html_code".
+    - If "fail":
+      * Set "html_code" to an empty string ("").
+      * Set "email_subject" to an empty string ("").
+      * Set "status" to "fail".
+  - Do NOT return any other keys, fields, or text. Only return the single JSON object.
+  - Ensure the JSON is parseable by Python's json.loads without modification.
+  - Return ONLY the JSON object. Do NOT include ```json``` or any backticks, code blocks, or extra text.
+

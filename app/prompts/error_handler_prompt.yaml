@@ -1,0 +1,22 @@
+name: error_handler
+version: v1.1
+description: >
+  Analyze the issue and suggest the best recovery action.
+
+input_variables:
+  - connector_type
+  - error
+
+prompt: |
+  The following error occurred while using the {connector_type} connector:
+    {error}
+
+  Suggest the best recovery action using one of the following keywords:
+  - switch_connector
+  - switch_model
+  - switch_token
+  - switch_url
+  - retry_after_delay
+  - exit
+
+  Only return **one** keyword.
