@@ -315,6 +315,153 @@ llm = LLMFactory.create(
 
 ---
 
+
+---
+
+## 🧪 Installation & Local Setup
+
+### Prerequisites
+
+* Python 3.10+
+* Docker & Docker Compose
+* PostgreSQL
+* Redis
+* Gmail account
+
+### Clone Repository
+
+```bash
+git clone https://github.com/your-username/hiremail-ai.git
+cd hiremail-ai
+```
+
+### Environment Variables
+
+Create a `.env` file:
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/hiremail
+REDIS_URL=redis://localhost:6379
+JWT_SECRET=your_secret_key
+PRIMARY_LLM=openai
+OPENAI_API_KEY=your_key
+```
+
+### Run with Docker
+
+```bash
+docker-compose up --build
+```
+
+Backend runs at: `http://localhost:8000`
+
+---
+
+## 🔐 Google OAuth Setup (Gmail API)
+
+HireMail AI uses **Gmail API (Restricted Scope)** to draft and send emails **only after user approval**.
+
+### ✅ How `credentials.json` is Created
+
+`credentials.json` is generated **by Google**, not by the application.
+
+**Steps:**
+
+1. Go to **Google Cloud Console**
+2. Create a new project
+3. Navigate to **APIs & Services → Library**
+4. Enable **Gmail API**
+5. Go to **APIs & Services → OAuth Consent Screen**
+
+   * User Type: **External**
+   * Add scopes:
+
+     * `https://www.googleapis.com/auth/gmail.send`
+     * `https://www.googleapis.com/auth/gmail.compose`
+   * Add your Gmail ID as a **Test User**
+6. Go to **APIs & Services → Credentials**
+7. Click **Create Credentials → OAuth Client ID**
+
+   * Application type: **Web Application**
+   * Authorized Redirect URI:
+
+     ```
+     http://localhost:8000/auth/gmail/callback
+     ```
+8. Download the OAuth file provided by Google
+
+Rename the downloaded file to:
+
+```
+credentials.json
+```
+
+### 📁 Where to Place `credentials.json`
+
+Place the file at:
+
+```
+backend/config/credentials.json
+```
+
+---
+
+## 🔑 How `token.json` Is Generated Automatically
+
+`token.json` is **NOT manually created**. It is generated automatically after the first successful OAuth login.
+
+### Automatic Flow
+
+1. Start the backend server
+2. Open the following URL in your browser:
+
+```
+http://localhost:8000/auth/gmail/login
+```
+
+3. Google OAuth screen appears
+4. User grants Gmail permissions
+5. Google redirects to the callback endpoint
+6. Backend exchanges auth code for tokens
+7. Tokens are stored automatically as:
+
+```
+backend/config/token.json
+```
+
+### What `token.json` Contains
+
+* Access token
+* Refresh token
+* Token expiry metadata
+
+### Token Lifecycle
+
+* Access token expires automatically
+* Refresh token is used silently
+* No user re-login required
+
+### Revoking Access
+
+Users can revoke access anytime from:
+**Google Account → Security → Third‑party access**
+
+⚠️ **Do NOT commit `credentials.json` or `token.json` to Git**
+
+⚠️ **Never commit `credentials.json` or `token.json` to Git**
+
+---
+
+## 🔒 Security Notes
+
+* OAuth tokens encrypted at rest
+* Draft‑only email flow until user approval
+* GDPR‑compliant data handling
+* Gmail Restricted Scope review in progress
+
+---
+
+
 ## 🎥 Demo
 
 Watch the complete workflow in action:
